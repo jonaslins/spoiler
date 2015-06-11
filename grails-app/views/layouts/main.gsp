@@ -12,14 +12,63 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
-  		<asset:stylesheet src="application.css"/>
+  		%{--<asset:stylesheet src="application.css"/>--}%
 		<asset:javascript src="application.js"/>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 		<g:layoutHead/>
 	</head>
 	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Spoiler</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<sec:ifLoggedIn>
+
+						<form class="navbar-form navbar-right" action='${createLink( controller:'logout')}'method='POST'>
+							<button type="submit" class="btn btn-success">
+								Log out
+							</button>
+						</form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#"><sec:username/></a></li>
+                        </ul>
+
+					</sec:ifLoggedIn>
+					<sec:ifNotLoggedIn>
+					<form class="navbar-form navbar-right" action='${createLink(uri: '/j_spring_security_check')}'  method='POST'>
+						<div class="form-group">
+							<input type="text" placeholder="Username" class="form-control" name='j_username'>
+						</div>
+						<div class="form-group">
+							<input type="password" placeholder="Password" class="form-control" name='j_password'>
+						</div>
+						<button type="submit" class="btn btn-success">
+							Log in
+						</button>
+					</form>
+					</sec:ifNotLoggedIn>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</nav>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+
+        <div class="footer" role="contentinfo"></div>
+        <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</body>
 </html>

@@ -1,5 +1,5 @@
 # spoiler
 
 ##### Authors and Contributors
-@jonaslins @pedro  @torres
+@jonaslins @pedrovsra  @felipeTM
     
