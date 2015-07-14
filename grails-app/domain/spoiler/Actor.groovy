@@ -4,9 +4,9 @@ import ontology.Core
 
 class Actor extends Person{
 
-    static hasMany = [series: Serie]
+    static hasMany = [series: Serie, movies: Movie]
 
-    static belongsTo = Serie
+    static belongsTo = [Serie, Movie]
 
     static constraints = {
     }

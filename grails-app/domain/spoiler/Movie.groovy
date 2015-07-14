@@ -9,7 +9,7 @@ class Movie {
     Double grade
     String synopsis
 
-    static hasMany = [cast: Actor, directors: Director, genres: Genre]
+    static hasMany = [actors: Actor, directors: Director, genres: Genre]
 
     static belongsTo = [Director, Genre]
 
