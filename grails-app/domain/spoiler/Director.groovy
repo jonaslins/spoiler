@@ -4,7 +4,7 @@ import ontology.Core
 
 class Director extends Person{
 
-    static hasMany = [series: Serie]
+    static hasMany = [series: Serie, movies: Movie]
 
     static constraints = {
     }

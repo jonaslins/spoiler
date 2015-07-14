@@ -14,10 +14,13 @@ class Movie {
     static belongsTo = [Director, Genre]
 
     static constraints = {
+        releaseDate nullable: true
+        grade nullable: true
+        synopsis nullable: true
     }
 
     def afterInsert() {
         Core core = Core.getInstance();
-        core.insertClassInstance("Series", id+"")
+        core.insertClassInstance("Film", id+"")
     }
 }

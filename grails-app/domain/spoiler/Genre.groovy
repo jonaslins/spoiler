@@ -6,7 +6,7 @@ class Genre {
 
     String name
 
-    static hasMany = [series: Serie]
+    static hasMany = [series: Serie, movies:Movie]
 
     static constraints = {
     }
