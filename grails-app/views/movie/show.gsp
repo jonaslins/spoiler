@@ -17,7 +17,16 @@
 			</ul>
 		</div>
 		<div id="show-movie" class="content scaffold-show" role="main">
-			<h1><g:fieldValue bean="${movieInstance}" field="name"/></h1>
+			<h1>
+                <g:fieldValue bean="${movieInstance}" field="name"/>
+                <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:#900"></span> Curtir
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-film" aria-hidden="true" ></span> Já assisti
+                </button>
+            </h1>
+
             <g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
