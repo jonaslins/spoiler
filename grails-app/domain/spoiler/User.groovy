@@ -1,5 +1,7 @@
 package spoiler
 
+import ontology.Core
+
 class User {
 
 	transient springSecurityService
@@ -10,6 +12,8 @@ class User {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+
+	static hasMany = [likes: Serie, watchlist:Serie]
 
 	static transients = ['springSecurityService']
 
@@ -28,7 +32,13 @@ class User {
 
 	def beforeInsert() {
 		encodePassword()
+
 	}
+
+    def afterInsert() {
+        Core core = Core.getInstance();
+        core.insertClassInstance("User", id+"")
+    }
 
 	def beforeUpdate() {
 		if (isDirty('password')) {
