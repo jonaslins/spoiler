@@ -16,11 +16,13 @@
 		<asset:javascript src="application.js"/>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
+        <style type="text/css" media="screen">
+            .navbar-form-alt {padding: 8px 12px}
+        </style>
 		<g:layoutHead/>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,6 +34,17 @@
 					<a class="navbar-brand" href="#">Spoiler</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
+                    <div class="col-sm-6 col-md-6">
+
+                        <form class="navbar-form-alt" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Filmes, Atores, Personagens..." name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
 					<sec:ifLoggedIn>
 
 						<form class="navbar-form navbar-right" action='${createLink( controller:'logout')}'method='POST'>
@@ -40,9 +53,11 @@
 							</button>
 						</form>
                         <ul class="nav navbar-nav navbar-right">
+
+                            <li><g:link controller="movie">Filmes</g:link></li>
+                            <li><g:link controller="actor">Atores</g:link></li>
                             <li class="active"><a href="#"><sec:username/></a></li>
                         </ul>
-
 					</sec:ifLoggedIn>
 					<sec:ifNotLoggedIn>
 					<form class="navbar-form navbar-right" action='${createLink(uri: '/j_spring_security_check')}'  method='POST'>
