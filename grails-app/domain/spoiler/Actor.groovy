@@ -1,5 +1,7 @@
 package spoiler
 
+import ontology.Core
+
 class Actor extends Person{
 
     static hasMany = [series: Serie]
@@ -7,6 +9,11 @@ class Actor extends Person{
     static belongsTo = Serie
 
     static constraints = {
+    }
+
+    def afterInsert() {
+        Core core = Core.getInstance();
+        core.insertClassInstance("Actor", id+"")
     }
 
 }

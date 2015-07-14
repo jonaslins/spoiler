@@ -1,5 +1,7 @@
 package spoiler
 
+import ontology.Core
+
 class Serie {
 
     String name
@@ -12,5 +14,10 @@ class Serie {
     static belongsTo = [Director, Genre, Author]
 
     static constraints = {
+    }
+
+    def afterInsert() {
+        Core core = Core.getInstance();
+        core.insertClassInstance("Series", id+"")
     }
 }
