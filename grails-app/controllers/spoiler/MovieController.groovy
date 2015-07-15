@@ -1,6 +1,7 @@
 package spoiler
 
 import grails.plugin.springsecurity.annotation.Secured
+import ontology.Core
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -9,7 +10,32 @@ import grails.transaction.Transactional
 @Secured(['ROLE_ADMIN'])
 class MovieController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+   //static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def springSecurityService
+
+    def like() {
+        def currentUser = springSecurityService.getCurrentUser()
+        Core core = Core.getInstance()
+
+        def movie = Movie.findById(params.id)
+        def user = User.findById(currentUser.id)
+        user.addToLikes(movie)
+        user.save(flush: true, failOnError: true)
+
+        core.insertObjectPropertyInstance(currentUser.id+"", "liked", params.id+"")
+    }
+
+    def watched() {
+        def currentUser = springSecurityService.getCurrentUser()
+
+        def movie = Movie.findById(params.id)
+        def user = User.findById(currentUser.id)
+        user.addToWatchlist(movie)
+        user.save(flush: true, failOnError: true)
+
+        Core core = Core.getInstance()
+        core.insertObjectPropertyInstance(currentUser.id+"", "watched", params.id+"")
+    }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -92,6 +118,7 @@ class MovieController {
             '*' { render status: NO_CONTENT }
         }
     }
+
 
     protected void notFound() {
         request.withFormat {

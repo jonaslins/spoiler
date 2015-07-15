@@ -13,7 +13,7 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	static hasMany = [likes: Serie, watchlist:Serie]
+	static hasMany = [likes: Movie, watchlist:Movie]
 
 	static transients = ['springSecurityService']
 

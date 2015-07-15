@@ -9,13 +9,10 @@
 	</head>
 	<body>
 	<div class="container">
-		<a href="#list-movie" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
+		<ul class="nav nav-pills">
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
-		</div>
 		<div id="list-movie" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -25,7 +22,6 @@
 			<thead>
 					<tr>
 						<g:sortableColumn property="name" title="${message(code: 'movie.name.label', default: 'Name')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
@@ -37,9 +33,11 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<nav>
+				<ul class="pagination">
 				<g:paginate total="${movieInstanceCount ?: 0}" />
-			</div>
+				</ul>
+			</nav>
 		</div>
 	</div>
 	</body>

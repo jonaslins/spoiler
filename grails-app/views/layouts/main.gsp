@@ -31,7 +31,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Spoiler</a>
+					<a class="navbar-brand" href="\Spoiler">Spoiler</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
                     <div class="col-sm-6 col-md-6">

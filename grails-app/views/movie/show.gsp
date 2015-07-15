@@ -9,20 +9,18 @@
 	</head>
 	<body>
 	<div class="container">
-		<div>
-			<ul class="nav nav-pills">
-				<li role="presentation"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li role="presentation"><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li role="presentation"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+        <ul class="nav nav-pills">
+            <li role="presentation"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+            <li role="presentation"><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+            <li role="presentation"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+        </ul>
 		<div id="show-movie" class="content scaffold-show" role="main">
 			<h1>
-                <g:fieldValue bean="${movieInstance}" field="name"/>
-                <button type="button" class="btn btn-default">
+            <g:fieldValue bean="${movieInstance}" field="name"/>
+                <button type="submit" class="btn btn-default" onclick="<g:remoteFunction action='like' id='${movieInstance.id}'/>">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:#900"></span> Curtir
                 </button>
-                <button type="button" class="btn btn-default">
+                <button type="submit" class="btn btn-default" onclick="<g:remoteFunction action='watched' id='${movieInstance.id}'/>">
                     <span class="glyphicon glyphicon-film" aria-hidden="true" ></span> Já assisti
                 </button>
             </h1>
