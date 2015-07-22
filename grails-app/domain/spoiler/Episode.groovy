@@ -8,7 +8,7 @@ class Episode {
     Integer number
     long duration
 
-    static belongsTo = Serie
+    static belongsTo = Movie
 
     static constraints = {
     }

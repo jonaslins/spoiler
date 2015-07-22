@@ -2,7 +2,7 @@ package spoiler
 
 class Author extends Person{
 
-    static hasMany = [series: Serie]
+    static hasMany = [movies: Movie]
 
     static constraints = {
     }
