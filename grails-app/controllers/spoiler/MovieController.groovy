@@ -1,7 +1,7 @@
 package spoiler
 
 import grails.plugin.springsecurity.annotation.Secured
-import ontology.Core
+import ontology.OntologyController
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -15,13 +15,13 @@ class MovieController {
 
     def like() {
         def currentUser = springSecurityService.getCurrentUser()
-        Core core = Core.getInstance()
 
         def movie = Movie.findById(params.id)
         def user = User.findById(currentUser.id)
         user.addToLikes(movie)
         user.save(flush: true, failOnError: true)
 
+        OntologyController core = OntologyController.getInstance()
         core.insertObjectPropertyInstance(currentUser.id+"", "liked", params.id+"")
     }
 
@@ -33,7 +33,7 @@ class MovieController {
         user.addToWatchlist(movie)
         user.save(flush: true, failOnError: true)
 
-        Core core = Core.getInstance()
+        OntologyController core = OntologyController.getInstance()
         core.insertObjectPropertyInstance(currentUser.id+"", "watched", params.id+"")
     }
 

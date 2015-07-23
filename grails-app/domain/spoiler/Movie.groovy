@@ -1,6 +1,6 @@
 package spoiler
 
-import ontology.Core
+import ontology.OntologyController
 
 class Movie {
 
@@ -8,6 +8,11 @@ class Movie {
     Date releaseDate
     Double grade
     String synopsis
+
+    def afterInsert() {
+        OntologyController core = OntologyController.getInstance()
+        core.insertClassInstance("Film", id+"")
+    }
 
     static hasMany = [actors: Actor, directors: Director, genres: Genre]
 
@@ -19,8 +24,5 @@ class Movie {
         synopsis nullable: true
     }
 
-    def afterInsert() {
-        Core core = Core.getInstance();
-        core.insertClassInstance("Film", id+"")
-    }
+
 }

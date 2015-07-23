@@ -2,6 +2,8 @@ package ontology;
 
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import java.util.List;
+
 public interface IOntologyManager {
 
 
@@ -32,5 +34,7 @@ public interface IOntologyManager {
      * @author Jonas Lins
      */
 	public void setFilePath(String filePath);
+
+	public List<String> findMovieRecomendations();
 
 }

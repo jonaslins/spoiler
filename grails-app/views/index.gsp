@@ -63,6 +63,13 @@
 				list-style-position: inside;
 				margin: 0.25em 0;
 			}
+			h5{
+				display:inline-block;
+				width:100%;
+				white-space: nowrap;
+				overflow:hidden !important;
+				text-overflow: ellipsis;
+			}
 
 			@media screen and (max-width: 480px) {
 				#status {
@@ -77,67 +84,62 @@
 					margin-top: 0;
 				}
 			}
+
 		</style>
 	</head>
 	<body>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Hello, world!</h1>
-            <sec:ifAllGranted roles="ROLE_ADMIN">
-                <div id="controller-list" role="navigation">
-                    <h2>Available Controllers:</h2>
-                    <ul>
-                        <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                            <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
-                        </g:each>
-                    </ul>
-                </div>
-            </sec:ifAllGranted>
-			%{--<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>--}%
-			%{--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>--}%
 		</div>
 	</div>
     <div class="container">
+		<sec:ifLoggedIn>
+		<g:if test="${recentLikes?.size()>0}">
+			<div class="row">
+				<h4>Recent likes:</h4>
 
-        <div class="row">
+				<g:each var="rm" in="${recentLikes}">
 
+					<div class="col-sm-6 col-md-2">
 
-            <div class="col-sm-6 col-md-2">
-                <h4>Recent likes:</h4>
-                <div class="thumbnail">
-                    <img width="162" height="240" src="http://ia.media-imdb.com/images/M/MV5BMjIzMzAzMjQyM15BMl5BanBnXkFtZTcwNzM2NjcyOQ@@._V1._SY317_.jpg" class="postim wp-post-image" alt="Fifty-Shades-of-Grey">
-                    <div class="caption">
-                        <h4>Iron Man 3</h4>
-                        <p>When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-                        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-6 col-md-2">
-                <br><br>
-                <div class="thumbnail">
-                    <img width="162" height="240" src="http://ia.media-imdb.com/images/M/MV5BMTYxMjA5NDMzNV5BMl5BanBnXkFtZTcwOTk2Mjk3NA@@._V1_SX214_AL_.jpg" class="postim wp-post-image" alt="Fifty-Shades-of-Grey">
-                    <div class="caption">
-                        <h4>Thor</h4>
-                        <p>The powerful but arrogant god Thor is cast out of Asgard to live amongst humans in Midgard (Earth), where he soon becomes one of their finest defenders.</p>
-                        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                    </div>
-                </div>
-            </div>
-            <h4>Movies you might like:</h4>
-			<div class="col-sm-6 col-md-2">
-				<div class="thumbnail">
-					<img width="162" height="240" src="http://www.coverwhiz.com/content/The-Avengers.jpg" class="postim wp-post-image" alt="Fifty-Shades-of-Grey">
-					<div class="caption">
-						<h4>The Avengers</h4>
-						<p>Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity</p>
-						<p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+						<div class="thumbnail" >
+							<asset:image src="movie.png" alt="Grails"/>
+							<div class="caption">
+								<h5>${rm.name}</h5>
+							<p><a class="btn btn-default" href="${createLink(controller: "movie", action: "show", id: rm.id)}" role="button">View details »</a></p>
+							</div>
+						</div>
+					</div>
+				</g:each>
+			</div>
+		</g:if>
+		<div class="row">
+			<h4>Movies you might like:</h4>
+			<g:each var="rm" in="${recommendedMovies}">
+				<div class="col-sm-6 col-md-2">
+					<div class="thumbnail" >
+						<asset:image src="movie.png" alt="Grails"/>
+						<div class="caption">
+							<h5>${rm.name}</h5>
+							<p><a class="btn btn-default" href="${createLink(controller: "movie", action: "show", id: rm.id)}" role="button">View details »</a></p>
+						</div>
 					</div>
 				</div>
+			</g:each>
+		</div>
+		</sec:ifLoggedIn>
+		<sec:ifAllGranted roles="ROLE_ADMIN">
+			<div id="controller-list" role="navigation">
+				<h2>Available Controllers:</h2>
+				<ul>
+					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+					</g:each>
+				</ul>
 			</div>
-        </div>
-    </div>
+		</sec:ifAllGranted>
+
+	</div>
 
 	</body>
 </html>

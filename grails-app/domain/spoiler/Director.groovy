@@ -1,6 +1,6 @@
 package spoiler
 
-import ontology.Core
+import ontology.OntologyController
 
 class Director extends Person{
 
@@ -10,7 +10,7 @@ class Director extends Person{
     }
 
     def afterInsert() {
-        Core core = Core.getInstance();
+        OntologyController core = OntologyController.getInstance();
         core.insertClassInstance("Director", id+"")
     }
 }

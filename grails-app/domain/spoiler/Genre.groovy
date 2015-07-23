@@ -1,7 +1,5 @@
 package spoiler
 
-import ontology.Core
-
 class Genre {
 
     String name
@@ -12,7 +10,7 @@ class Genre {
     }
     //TODO
     def afterInsert() {
-        //Core core = Core.getInstance();
+        //OntologyController core = OntologyController.getInstance();
         //core.insertClassInstance("Episode", id+"")
     }
 }

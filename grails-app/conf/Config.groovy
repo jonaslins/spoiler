@@ -58,6 +58,9 @@ grails {
         // filteringCodecForContentType.'text/html' = 'html'
     }
 }
+grails.views.default.codec = "html"
+grails.views.gsp.encoding = "UTF-8"
+grails.converters.encoding = "UTF-8"
 
 
 grails.converters.encoding = "UTF-8"
@@ -117,7 +120,7 @@ log4j.main = {
 }
 
 
-// Added by the Spring Security Core plugin:
+// Added by the Spring Security OntologyController plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'spoiler.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'spoiler.UserRole'
 grails.plugin.springsecurity.authority.className = 'spoiler.Role'

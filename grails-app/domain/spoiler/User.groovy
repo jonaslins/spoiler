@@ -1,6 +1,6 @@
 package spoiler
 
-import ontology.Core
+import ontology.OntologyController
 
 class User {
 
@@ -36,7 +36,7 @@ class User {
 	}
 
     def afterInsert() {
-        Core core = Core.getInstance();
+        OntologyController core = OntologyController.getInstance();
         core.insertClassInstance("User", id+"")
     }
 

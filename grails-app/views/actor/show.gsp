@@ -32,17 +32,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${actorInstance?.series}">
-				<li class="list-group-item">
-					<span id="series-label" class="property-label"><g:message code="actor.series.label" default="Series" /></span>
-					
-						<g:each in="${actorInstance.series}" status="i" var="s">
-						<span class="property-value" aria-labelledby="series-label"><g:link controller="serie" action="show" id="${s.id}">${s?.name}${(i+1<actorInstance.series.size())? ", ":""}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 			</ul>
 			<g:form url="[resource:actorInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

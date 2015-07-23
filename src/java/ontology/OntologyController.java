@@ -3,13 +3,15 @@ package ontology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import java.util.List;
+
 /**
  * Created by Jonas on 13/07/2015.
  */
-public class Core {
-    private static Core instance = new Core();
-    private Core(){}
-    public static Core getInstance() { return instance; }
+public class OntologyController {
+    private static OntologyController instance = new OntologyController();
+    private OntologyController(){}
+    public static OntologyController getInstance() { return instance; }
 
     static final String baseOwl = "http://www.semanticweb.org/felipe/ontologies/2015/4/untitled-ontology-4";
     static final String fileName = "onto.owl";
@@ -33,5 +35,9 @@ public class Core {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<String> findMovieRecomendations(){
+        return owlManager.findMovieRecomendations();
     }
 }

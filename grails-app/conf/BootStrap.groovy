@@ -1,4 +1,5 @@
-import ontology.Core
+import ontology.OntologyController
+import ontology.OntologyController
 import spoiler.Actor
 import spoiler.Director
 import spoiler.Genre
@@ -138,7 +139,7 @@ class BootStrap {
                 ]
                 ,
                 [
-                        name: "O Silêncio dos Inocentes",
+                        name: "O Silencio dos Inocentes",
                         directors: ["Jonathan Demme"],
                         genres:
                                 ["Drama","Mistério","Thriller"],
@@ -347,7 +348,7 @@ class BootStrap {
                 ]
 
         ];
-        Core core = Core.getInstance();
+        OntologyController core = OntologyController.getInstance();
 
         for (def movieMap: movies){
             def movie = Movie.findOrSaveWhere(name: movieMap["name"])
